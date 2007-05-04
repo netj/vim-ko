@@ -1,0 +1,44 @@
+command	명령
+line	줄
+word	낱말? 단어?
+button	버튼? 단추?
+manual	설명서?
+syntax highlighting	문법 강조?
+edit	편집하다? 고치다?
+modify	수정하다? 고치다?
+typing	치다? 입력하다?
+undo	실행취소? 취소?
+argument	인자
+context	문맥? 상황
+Last change:	새로고침:? 마지막 변경:?
+2006 May 07	2006년 5월 7일
+	2006년12월31일
+
+mode	모드? 상태?
+normal mode	보통? 일반? mode
+visual mode	가시? 시각? mode
+insert mode	입력? 삽입? mode
+replace	수정? 바꾸기?
+option	설정? 설정사항? 선택사항? 기호? 옵션?
+
+foo? bars?	아무개? 갑? 을? 하나? 두울?
+
+Making small/big changes?
+Recovering from a crash	복구하기? 작업 복구하기? 작업내용 복구하기? 사고에서 복구하기?
+Clever tricks	멋진 기술들?
+
+Editing Effectively	효율적으로? 효과적으로? 제대로? 편집하기  편집 더 잘하기?
+The undo tree	실행취소 트리? 다중 실행취소?
+
+formatted text	예쁘게?
+patterns	패턴? 꼴?
+Moving	이동하기? 돌아다니기?
+Tuning	주무르기?
+reference manual	상세 설명서?
+
+
+Note	유의
+한글 키워드, 태그
+
+
+# vim:ts=24

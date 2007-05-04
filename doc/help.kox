@@ -1,0 +1,213 @@
+*help.txt*	Vim version 7.0 대상.  새로고침: 2007년 4월17일
+
+			VIM - 도움말 시작 파일
+									 k
+       돌아다니기:  화살표키를 사용하거나, "h"로 왼쪽, "j"로 아래쪽,   h   l
+		    "k"로 위쪽, "l"로 오른쪽으로 이동할 수 있습니다.	 j
+ 이 창을 닫으려면:  ":q<Enter>"를 칩니다.
+ Vim에서 나가려면:  ":qa!<Enter>"를 칩니다(주의: 모든 바뀐점이 날아갑니다!).
+
+설명으로 이동하기:  커서를 태그(가령, |하나|) 위로 옮긴 다음, CTRL-]를 칩니다.
+  마우스를 쓰려면:  ":set mouse=a"로 마우스를 켜줍니다(xterm 또는 GUI에서).
+		    |하나|와 같은 태그를 가리키고 왼쪽 버튼을 두 번 누릅니다.
+       되돌아가기:  CTRL-T 또는 CTRL-O를 누릅니다(계속 뒤로 가려면 여러 번).
+
+  구체적인 도움말:  궁금한 무언가가 생겼을 때, 관련 낱말을 |:help| 명령의
+		    인자로 넘겨주면 도움말을 열어볼 수 있습니다.
+		    쓰이는 상황도 함께 적어주면 더 정확하게 찾을 수 있습니다:
+							*help-context*
+			  상황		   접두어	   예시		~
+		      보통상태 명령	   (없음)	   :help x
+		      가시상태 명령	     v_		   :help v_u
+		      입력상태 명령	     i_		   :help i_<Esc>
+		      명령줄 명령	     :		   :help :quit
+		      명령줄 편집 도중	     c_		   :help c_<Del>
+		      Vim 명령 인자	     -		   :help -r
+		      설정사항		     '		   :help 'textwidth'
+      도움말 찾기:  ":help word"를 친 다음, CTRL-D를 누르면 "word"와 관련된
+		    도움말 항목들을 볼 수 있습니다.
+
+VIM은 Vi IMproved의 약자이며, "빔"이라고 읽습니다.  VIM은 많은 분들의 도움을
+받아 Bram Moolenaar씨가 만들었습니다.  |credits| 참고.
+------------------------------------------------------------------------------
+						*doc-file-list* *Q_ct*
+기본 내용:
+|quickref|	가장 흔히 쓰는 명령들에 대한 개요
+|tutor|		초보자를 위한 30분짜리 실습 과정
+|copying|	저작권에 대하여
+|iccf|		우간다의 가난한 아이들을 도와요
+|sponsor|	Vim 개발 후원 및 Vim 등록 사용자 되기
+|www|		Vim의 웹페이지들
+|bugs|		버그를 어디로 신고해야 하나
+
+사용설명서: 이 파일들은 편집 작업을 어떻게 해내는지에 대해 설명합니다.
+
+|usr_toc.txt|	차례
+
+시작하기 ~
+|usr_01.txt|  설명서에 대하여
+|usr_02.txt|  Vim 첫걸음
+|usr_03.txt|  돌아다니기
+|usr_04.txt|  약간 고치기
+|usr_05.txt|  설정 바꾸기
+|usr_06.txt|  문법 강조 사용하기
+|usr_07.txt|  여러 파일 편집하기
+|usr_08.txt|  창 나누기
+|usr_09.txt|  GUI 사용하기
+|usr_10.txt|  많이 고치기
+|usr_11.txt|  작업 복구하기
+|usr_12.txt|  멋진 기술들
+
+효율적으로 편집하기 ~
+|usr_20.txt|  명령줄 명령들 빨리 치기
+|usr_21.txt|  나갔다가 되돌아오기
+|usr_22.txt|  편집할 파일 찾기
+|usr_23.txt|  특별한 파일 편집하기
+|usr_24.txt|  빠르게 입력하기
+|usr_25.txt|  예쁘게 편집하기
+|usr_26.txt|  반복하기
+|usr_27.txt|  찾기 명령과 패턴
+|usr_28.txt|  접기
+|usr_29.txt|  프로그램 코드 탐험하기
+|usr_30.txt|  프로그램 편집하기
+|usr_31.txt|  GUI 활용하기
+|usr_32.txt|  실행취소 트리
+
+Vim 주무르기 ~
+|usr_40.txt|  새로운 명령 만들기
+|usr_41.txt|  Vim 스크립트 만들기
+|usr_42.txt|  새 메뉴 추가하기
+|usr_43.txt|  filetype 사용하기
+|usr_44.txt|  나만의 문법 강조 만들기
+|usr_45.txt|  내 언어 고르기
+
+Vim 돌아가게 만들기 ~
+|usr_90.txt|  Vim 설치하기
+
+
+상세설명서: 이 파일들은 Vim의 구석구석을 설명합니다.	*reference_toc*
+
+General subjects ~
+|intro.txt|	general introduction to Vim; notation used in help files
+|help.txt|	overview and quick reference (this file)
+|index.txt|	alphabetical index of all commands
+|help-tags|	all the tags you can jump to (index of tags)
+|howto.txt|	how to do the most common editing tasks
+|tips.txt|	various tips on using Vim
+|message.txt|	(error) messages and explanations
+|quotes.txt|	remarks from users of Vim
+|todo.txt|	known problems and desired extensions
+|develop.txt|	development of Vim
+|debug.txt|	debugging Vim itself
+|uganda.txt|	Vim distribution conditions and what to do with your money
+
+Basic editing ~
+|starting.txt|	starting Vim, Vim command arguments, initialisation
+|editing.txt|	editing and writing files
+|motion.txt|	commands for moving around
+|scroll.txt|	scrolling the text in the window
+|insert.txt|	Insert and Replace mode
+|change.txt|	deleting and replacing text
+|indent.txt|	automatic indenting for C and other languages
+|undo.txt|	Undo and Redo
+|repeat.txt|	repeating commands, Vim scripts and debugging
+|visual.txt|	using the Visual mode (selecting a text area)
+|various.txt|	various remaining commands
+|recover.txt|	recovering from a crash
+
+Advanced editing ~
+|cmdline.txt|	Command-line editing
+|options.txt|	description of all options
+|pattern.txt|	regexp patterns and search commands
+|map.txt|	key mapping and abbreviations
+|tagsrch.txt|	tags and special searches
+|quickfix.txt|	commands for a quick edit-compile-fix cycle
+|windows.txt|	commands for using multiple windows and buffers
+|tabpage.txt|	commands for using multiple tab pages
+|syntax.txt|	syntax highlighting
+|spell.txt|	spell checking
+|diff.txt|	working with two or three versions of the same file
+|autocmd.txt|	automatically executing commands on an event
+|filetype.txt|	settings done specifically for a type of file
+|eval.txt|	expression evaluation, conditional commands
+|fold.txt|	hide (fold) ranges of lines
+
+Special issues ~
+|print.txt|	printing
+|remote.txt|	using Vim as a server or client
+|term.txt|	using different terminals and mice
+|digraph.txt|	list of available digraphs
+|mbyte.txt|	multi-byte text support
+|mlang.txt|	non-English language support
+|arabic.txt|	Arabic language support and editing
+|farsi.txt|	Farsi (Persian) editing
+|hebrew.txt|	Hebrew language support and editing
+|russian.txt|	Russian language support and editing
+|hangulin.txt|	Hangul (Korean) input mode
+|rileft.txt|	right-to-left editing mode
+
+GUI ~
+|gui.txt|	Graphical User Interface (GUI)
+|gui_w16.txt|	Windows 3.1 GUI
+|gui_w32.txt|	Win32 GUI
+|gui_x11.txt|	X11 GUI
+
+Interfaces ~
+|if_cscop.txt|	using Cscope with Vim
+|if_mzsch.txt|	MzScheme interface
+|if_perl.txt|	Perl interface
+|if_pyth.txt|	Python interface
+|if_sniff.txt|	SNiFF+ interface
+|if_tcl.txt|	Tcl interface
+|if_ole.txt|	OLE automation interface for Win32
+|if_ruby.txt|	Ruby interface
+|debugger.txt|	Interface with a debugger
+|workshop.txt|	Sun Visual Workshop interface
+|netbeans.txt|	NetBeans External Editor interface
+|sign.txt|	debugging signs
+
+Versions ~
+|vi_diff.txt|	Main differences between Vim and Vi
+|version4.txt|	Differences between Vim version 3.0 and 4.x
+|version5.txt|	Differences between Vim version 4.6 and 5.x
+|version6.txt|	Differences between Vim version 5.7 and 6.x
+|version7.txt|	Differences between Vim version 6.4 and 7.x
+						*sys-file-list*
+Remarks about specific systems ~
+|os_390.txt|	OS/390 Unix
+|os_amiga.txt|	Amiga
+|os_beos.txt|	BeOS and BeBox
+|os_dos.txt|	MS-DOS and MS-Windows NT/95 common items
+|os_mac.txt|	Macintosh
+|os_mint.txt|	Atari MiNT
+|os_msdos.txt|	MS-DOS (plain DOS and DOS box under Windows)
+|os_os2.txt|	OS/2
+|os_qnx.txt|	QNX
+|os_risc.txt|	RISC-OS
+|os_unix.txt|	Unix
+|os_vms.txt|	VMS
+|os_win32.txt|	MS-Windows 95/98/NT
+						*standard-plugin-list*
+Standard plugins ~
+|pi_gzip.txt|	Reading and writing compressed files
+|pi_netrw.txt|	Reading and writing files over a network
+|pi_paren.txt|	Highlight matching parens
+|pi_tar.txt|	Tar file explorer
+|pi_zip.txt|	Zip archive explorer
+
+추가설명서:					*local-additions*
+
+------------------------------------------------------------------------------
+*하나*		예시 하나
+
+마우스를 두 번 누르거나 CTRL-]를 이용해서 여기로 왔을텐데, CTRL-T, CTRL-O,
+g<RightMouse>, 또는 <C-RightMouse>를 이용하면 원래 있던 곳으로 돌아갑니다.
+
+원래 | 문자가 태그를 둘러싸고 있지만, 강조 기능을 켜면 보이지 않습니다.
+그러면 명령을 읽기가 훨씬 쉬워지지요.
+
+한편, | 사이에 있지 않은 그냥 낱말이라도, 그 위에서 CTRL-]를 누르면 Vim이
+가장 관련이 깊은 도움말을 찾아줍니다.
+
+------------------------------------------------------------------------------
+ vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:
