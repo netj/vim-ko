@@ -32,20 +32,21 @@ doc-install: $(TAG)
 
 
 # Vim 소스코드 가져오기
-vim7:
-	svn co https://svn.sourceforge.net/svnroot/vim/branches/vim7.0/
+VIM7=vim7
+$(VIM7):
+	svn co https://svn.sourceforge.net/svnroot/vim/branches/vim7.0/ $(VIM7)
 
 # 프로그램 메시지
-po: vim7
-	cd vim7/src/po && vim ko.po
+po: $(VIM7)
+	cd $(VIM7)/src/po && vim ko.po
 
 # GUI 메뉴
-menu: vim7
-	cd vim7/runtime/lang && vim menu_ko_kr.utf-8.vim
-vim7/runtime/lang/menu_ko_kr.euckr.vim: vim7/runtime/lang/menu_ko_kr.utf-8.vim
+menu: $(VIM7)
+	cd $(VIM7)/runtime/lang && vim menu_ko_kr.utf-8.vim
+$(VIM7)/runtime/lang/menu_ko_kr.euckr.vim: $(VIM7)/runtime/lang/menu_ko_kr.utf-8.vim
 	vim $< +"wq! ++enc=euc-kr $@"
 
 # 매뉴얼 페이지
-man: vim7
-	cd vim7/runtime/doc/*-ko*.1
+man: $(VIM7)
+	cd $(VIM7)/runtime/doc/*-ko*.1
 
