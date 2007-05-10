@@ -33,7 +33,7 @@ doc-install: $(TAG)
 
 # Vim 소스코드 가져오기
 vim7:
-	svn co https://svn.sourceforge.net/svnroot/vim/vim7
+	svn co https://svn.sourceforge.net/svnroot/vim/branches/vim7.0/
 
 # 프로그램 메시지
 po: vim7
