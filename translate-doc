@@ -3,12 +3,18 @@
 # Author: Jaeho Shin <netj@sparcs.org>
 # Created: 2007-04-17
 
-Translators="신재호"
+cd "`dirname "$0"`"
 
-here=`dirname "$0"`
+if [ -z "$AUTHOR" ]; then
+    if [ -f AUTHOR ]; then
+        AUTHOR=`(grep -v '^$' | tr '\n' ', ') <AUTHOR`
+        AUTHOR=${AUTHOR%,}
+    else
+        AUTHOR="신재호"
+    fi
+fi
+
 for f in "$@"; do
-    (
-    cd "$here"
     if ! [ -f doc/$f.kox ]; then
 	vim +"e \$VIMRUNTIME/doc/$f.txt | wq doc/$f.kox" &&
         f() {
@@ -26,7 +32,7 @@ for f in "$@"; do
         &&
         f \
         +'norm ggnoVIM USER MANUAL - by Bram Moolenaar0"ny$uoVIM 사용설명서 - Bram Moolenaar 저0"my$uc@r:center' \
-        +'norm yyp0vf-r WC     '"$Translators"' 역' \
+        +'norm yyp0vf-r WC     '"$AUTHOR"' 역' \
         +'norm gglvf*hy``@y:center' \
         &&
         f \
@@ -46,5 +52,4 @@ for f in "$@"; do
 	+"vnew MEMO | set noscrollbind | norm Hw" \
 	+"vertical resize 80" \
 	
-    )
 done
