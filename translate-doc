@@ -4,52 +4,4 @@
 # Created: 2007-04-17
 
 cd "`dirname "$0"`"
-
-if [ -z "$AUTHOR" ]; then
-    if [ -f AUTHOR ]; then
-        AUTHOR=`(grep -v '^$' | tr '\n' ', ') <AUTHOR`
-        AUTHOR=${AUTHOR%,}
-    else
-        AUTHOR="신재호"
-    fi
-fi
-
-for f in "$@"; do
-    if ! [ -f doc/$f.kox ]; then
-	vim +"e \$VIMRUNTIME/doc/$f.txt | wq doc/$f.kox" &&
-        f() {
-            vim +1 doc/$f.kox \
-                +'norm no:spl doc/usr_toc.koxgg/pW"zy$cD"zp0"yy$uc' \
-                +'norm no0f|lv;hyW@y0"ty$uc' \
-                +'norm no/"npV:s/"npa/"mp0"ry$uc' \
-                "$@" \
-                +'wq'
-        }
-        f \
-        +'norm ggnoFor Vim version 7.0.0"ny$uoVim version 7.0 대상.0"my$uc@r@t@r@t' \
-	+'norm ggnoLast change:0"ny$uo새로고침:0"my$uc@r@t@r@t' \
-	+'norm ggno^Copyright: see |manual-copyright|0"ny$uo저작권: |manual-copyright| 참고0"my$uc@r' \
-        &&
-        f \
-        +'norm ggnoVIM USER MANUAL - by Bram Moolenaar0"ny$uoVIM 사용설명서 - Bram Moolenaar 저0"my$uc@r:center' \
-        +'norm yyp0vf-r WC     '"$AUTHOR"' 역' \
-        +'norm gglvf*hy``@y:center' \
-        &&
-        f \
-        +'norm ggno *Next chapter:0"ny$uo다음 장:0"my$uc@r@t@r@t' \
-	+'norm ggno *Previous chapter:0"ny$uo이전 장:0"my$uc@r@t' \
-	+'norm ggnoTable of contents:0"ny$uo   차례:0"my$uc@r' \
-        +'norm gg' \
-        ||
-        rm doc/$f.kox
-    fi
-    vim +1 doc/$f.kox \
-	+"set fenc=utf-8 | set fencs=ucs-bom,utf-8,korea" \
-	+"set noet | set listchars=tab:>.,eol:$ | set list" \
-	+"new +1 \$VIMRUNTIME/doc/$f.txt" \
-	+"set scrollbind | norm wK" \
-	+"set scrollbind | norm \`\"" \
-	+"vnew MEMO | set noscrollbind | norm Hw" \
-	+"vertical resize 80" \
-	
-done
+make doc-translate D=$1
