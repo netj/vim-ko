@@ -50,7 +50,7 @@ doc-install: $(TAG)
 # 설명서 번역
 #  (D=usr_01와 같이 설명서 지정) 
 doc-translate: doc/$(D).kox
-	vim +1 $< \
+	@vim +1 $< \
 	    +"set fenc=utf-8 | set fencs=ucs-bom,utf-8,korea" \
 	    +"set noet | set listchars=tab:>.,eol:$$ | set list" \
 	    +"new +1 $(VIMCOPY)/runtime/doc/$(D).txt" \
@@ -60,32 +60,40 @@ doc-translate: doc/$(D).kox
 	    +"vertical resize 80" \
 
 define run-vim
-f() { \
-    f=$$1; shift; \
-    vim +1 $$f \
-        +'norm no:spl doc/usr_toc.koxgg/pW"zy$$cD"zp0"yy$$uc' \
-        +'norm no0f|lv;hyW@y0"ty$$uc' \
-        +'norm no/"npV:s/"npa/"mp0"ry$$uc' \
-        "$$@" \
-        +'wq'; \
-}; f
 endef
 # 설명서 번역 준비
 doc/%.kox: $(VIMCOPY)/runtime/doc/%.txt
-	cp $< $@
-	$(run-vim) $@ \
+	@\
+	if [ -e $@ ]; then touch $@; \
+	else \
+	set -e; \
+	cp $< $@; \
+	runvim() { \
+	    f=$$1; shift; \
+	    vim +1 $$f \
+	        +'norm no:spl doc/usr_toc.koxgg/pW"zy$$cD"zp0"yy$$uc' \
+	        +'norm no0f|lv;hyW@y0"ty$$uc' \
+	        +'norm no/"npV:s/"npa/"mp0"ry$$uc' \
+	        "$$@" \
+	        +'wq'; \
+	}; \
+	runvim $@ \
 	    +'norm ggnoFor Vim version 7.0.0"ny$$uoVim version 7.0 대상.0"my$$uc@r@t@r@t' \
 	    +'norm ggnoLast change:0"ny$$uo새로고침:0"my$$uc@r@t@r@t' \
-	    +'norm ggno^Copyright: see |manual-copyright|0"ny$$uo저작권: |manual-copyright| 참고0"my$$uc@r'
-	@$(run-vim) $@ \
+	    +'norm ggno^Copyright: see |manual-copyright|0"ny$$uo저작권: |manual-copyright| 참고0"my$$uc@r' \
+	; \
+	runvim $@ \
 	    +'norm ggnoVIM USER MANUAL - by Bram Moolenaar0"ny$$uoVIM 사용설명서 - Bram Moolenaar 저0"my$$uc@r:center' \
 	    +'norm yyp0vf-r WC     '"$(AUTHOR)"' 역' \
-	    +'norm gglvf*hy``@y:center'
-	@$(run-vim) $@ \
+	    +'norm gglvf*hy``@y:center' \
+	; \
+	runvim $@ \
 	    +'norm ggno *Next chapter:0"ny$$uo다음 장:0"my$$uc@r@t@r@t' \
 	    +'norm ggno *Previous chapter:0"ny$$uo이전 장:0"my$$uc@r@t' \
 	    +'norm ggnoTable of contents:0"ny$$uo   차례:0"my$$uc@r' \
-	    +'norm gg'
+	    +'norm gg' \
+	; \
+	fi
 
 # Vim 소스코드 가져오기
 $(VIMCOPY) $(VIMCOPY)/%:
