@@ -10,7 +10,7 @@ REVISION=0
 VIMREPO=https://svn.sourceforge.net/svnroot/vim/branches/vim7.0/
 VIMCOPY=vim
 
-.PHONY: help doc doc-help doc-install doc-translate po menu man
+.PHONY: help doc doc-help doc-install doc-translate tutor po menu man
 
 help:
 	@echo "vim-ko $(VERSION)-$(REVISION) (http://code.google.com/p/vim-ko)"
@@ -20,6 +20,7 @@ help:
 	@echo "  make doc-help"
 	@echo "  make doc-install"
 	@echo "  make doc-translate D=usr_01"
+	@echo "  make tutor"
 	@echo "  make po"
 	@echo "  make menu"
 	@echo "  make man"
@@ -89,6 +90,13 @@ doc/%.kox: $(VIMCOPY)/runtime/doc/%.txt
 # Vim 소스코드 가져오기
 $(VIMCOPY) $(VIMCOPY)/%:
 	svn co $(VIMREPO) $(VIMCOPY)
+
+# 길잡이
+tutor: $(VIMCOPY)
+	cd $(VIMCOPY)/runtime/tutor && vim tutor.ko.utf-8
+$(VIMCOPY)/runtime/tutor/tutor.ko.euc: \
+    $(VIMCOPY)/runtime/tutor/tutor.ko.utf-8
+	vim $< +"wq! ++enc=euc-kr $@"
 
 # 프로그램 메시지
 po: $(VIMCOPY)
