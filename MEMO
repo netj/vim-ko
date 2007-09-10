@@ -1,3 +1,6 @@
+문장 끝나고 마침표 다음에 두 칸 띄우기!
+고유명사: 소리나는대로? 일단은 그대로!
+
 command	명령
 line	줄
 word	낱말? 단어?
@@ -26,7 +29,9 @@ cursor	커서?
 tag	태그?
 shell	셸? 명령줄? 입력줄? 대화줄?
 menu	메뉴
+menu bar	메뉴? 메뉴바?
 prompt	명령줄? 프롬프트?
+text	글자? 글자들? 텍스트?
 
 foo? bars?	아무개? 갑? 을? 하나? 두울?
 
@@ -43,6 +48,8 @@ Moving	이동하기? 돌아다니기?
 Tuning	주무르기?
 reference manual	상세 설명서?
 
+Vim	그대로? 빔?
+Microsoft Windows	그대로? 윈도우즈?
 
 Note	유의
 한글 키워드, 태그
