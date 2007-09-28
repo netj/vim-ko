@@ -6,6 +6,7 @@ line	줄
 word	낱말? 단어?
 button	버튼? 단추?
 manual	설명서?
+highlighting	강조?
 syntax highlighting	문법 강조?
 edit	편집하다? 고치다?
 modify	수정하다? 고치다?
@@ -31,9 +32,23 @@ shell	셸? 명령줄? 입력줄? 대화줄?
 menu	메뉴
 menu bar	메뉴? 메뉴바?
 prompt	명령줄? 프롬프트?
-text	글자? 글자들? 텍스트?
+text	글자? 글자들? 텍스트? 내용?
 
 foo? bars?	아무개? 갑? 을? 하나? 두울?
+
+fold	폴드? 접음?
+closed fold	접힌 fold
+opened fold	펼쳐진 fold
+column	열
+scroll binding	스크롤 연계? 스크롤 묶음?
+default	기본값?
+alternate file	다른 파일? 
+modifier command	수식 명령어? 꾸밈 명령어?
+label	이름표? 라벨?
+buffer	버퍼?
+
+
+
 
 Making small/big changes?
 Recovering from a crash	복구하기? 작업 복구하기? 작업내용 복구하기? 사고에서 복구하기?
@@ -47,6 +62,12 @@ patterns	패턴? 꼴?
 Moving	이동하기? 돌아다니기?
 Tuning	주무르기?
 reference manual	상세 설명서?
+
+status line	상태표시줄
+empty file	빈 파일
+underscore	밑줄
+width	너비? 폭?
+vertical separator	수직분리대
 
 Vim	그대로? 빔?
 Microsoft Windows	그대로? 윈도우즈?
