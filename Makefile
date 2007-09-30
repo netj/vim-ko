@@ -7,7 +7,7 @@ AUTHOR?=$(shell cat AUTHOR || echo 신재호)
 VERSION=7.0
 REVISION=0
 
-VIMREPO=https://svn.sourceforge.net/svnroot/vim/branches/vim7.0/
+VIMREPO=https://vim.svn.sourceforge.net/svnroot/vim/branches/vim7.0/
 VIMCOPY=vim
 
 .PHONY: help doc doc-help doc-install doc-translate tutor po menu man
@@ -34,7 +34,7 @@ TAG=doc/tags-ko
 
 # 설명서 묶음
 doc: $(DOC)
-$(DOC): $(shell find $(DOCS))
+$(DOC): $(shell find $(DOCS) 2>/dev/null)
 	tar cvjf $@ $(DOCS)
 $(TAG): $(TXTS)
 	vim +"helptags doc" +"qa!"
@@ -49,7 +49,7 @@ doc-install: $(TAG)
 
 # 설명서 번역
 #  (D=usr_01와 같이 설명서 지정) 
-doc-translate: doc/$(D).kox
+doc-translate: doc/$(D).kox $(VIMCOPY)/runtime/doc/$(D).txt
 	@vim +1 $< \
 	    +"set fenc=utf-8 | set fencs=ucs-bom,utf-8,korea" \
 	    +"set noet | set listchars=tab:>.,eol:$$ | set list" \
