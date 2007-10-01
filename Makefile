@@ -7,7 +7,7 @@ AUTHOR?=$(shell cat AUTHOR || echo 신재호)
 VERSION=7.0
 REVISION=0
 
-VIMREPO=https://svn.sourceforge.net/svnroot/vim/branches/vim7.0/
+VIMREPO=https://vim.svn.sourceforge.net/svnroot/vim/branches/vim7.0/
 VIMCOPY=vim
 
 .PHONY: help doc doc-help doc-install doc-translate tutor po menu man
