@@ -22,6 +22,8 @@ mode	모드? 상태?
 normal mode	보통? 일반? mode
 visual mode	가시? 시각? mode
 insert mode	입력? 삽입? mode
+command line mode	명령줄 상태
+
 replace	수정? 바꾸기?
 option	설정? 설정사항? 선택사항? 기호? 옵션?
 chapter	장
@@ -68,11 +70,28 @@ empty file	빈 파일
 underscore	밑줄
 width	너비? 폭?
 vertical separator	수직분리대
+history	히스토리
+mapping	매핑?
+
+restore	불러오다
+autocommand	자동명령
+directory	디렉토리
+
+hidden buffer	숨겨진 버퍼
+alternate buffer	교대 버퍼
+binary file	이진 파일
+swap file	임시 파일
+keymap	키맵
+operator	오퍼레이터? 연산자? 명령? 변환기? 
+text object	문자열 객체? 텍스트 객체?
+horizontal scroll bar	수평 스크롤 바
+blockwise Visual mode	블록 가시 상태? 구역 가시 상태?
+
 
 Vim	그대로? 빔?
 Microsoft Windows	그대로? 윈도우즈?
 
-Note	유의
+Note	유의? 유의사항?
 한글 키워드, 태그
 
 
