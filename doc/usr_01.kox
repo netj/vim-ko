@@ -1,9 +1,9 @@
 *usr_01.txt*	Vim version 7.0 대상.  새로고침: 2007년 7월 1일
 
-                      VIM 사용설명서 - Bram Moolenaar 저
-                                       신재호 역
+		      VIM 사용설명서 - Bram Moolenaar 저
+				       신재호 역
 
-                               설명서에 대하여
+			       설명서에 대하여
 
 
 이 장에서는 Vim과 함께 제공되는 설명서들에 대해서 소개합니다.  명령들에 대한
@@ -157,7 +157,7 @@ Vim 사용설명서와 상세설명서의 원래 영문판 저작권 (c) 1998-20
 Moolenaar에게 있으며, 한글 번역본의 저작권 (c) 2007은 신재호 및 vim-ko
 모임에서 번역에 참여한 사람들에게 있습니다.  vim-ko 모임에 관한 더 자세한
 내용은 다음 주소에서 확인할 수 있습니다:
-	     http://code.google.com/p/vim-ko/
+	     https://github.com/netj/vim-ko
 영문 설명서와 마찬가지로 이 한글 번역본은 Open Publication License v1.0 또는
 그 이후 판이 허용하는 조항과 조건들을 만족시키는 범위 내에서만 배포
 가능합니다.  가장 최근 판은 다음 위치에서 받아볼 수 있습니다:
