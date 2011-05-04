@@ -1,56 +1,58 @@
-# vim-ko Makefile
+# Vim 한글 번역을 위한 Makefile
 # Author: Jaeho Shin <netj@sparcs.org>
 # Created: 2007-04-17
 
 AUTHOR?=$(shell cat AUTHOR || echo 신재호)
 
-VERSION=7.0
-REVISION=0
+VERSION:=7.3
+REVISION:=$(shell git rev-parse HEAD | cut -b1-6)
 
-VIMREPO=https://vim.svn.sourceforge.net/svnroot/vim/branches/vim7.0/
-VIMCOPY=vim
+VIMREPO:=https://vim.googlecode.com/hg/
+VIMCOPY:=vim
 
-.PHONY: help doc doc-help doc-install doc-translate tutor po menu man
+.PHONY: usage help translate zip install  tutor po menu man
 
-help:
-	@echo "vim-ko $(VERSION)-$(REVISION) (http://code.google.com/p/vim-ko)"
-	@echo "Usage:"
+usage:
+	@echo "vim-ko $(VERSION)-$(REVISION) (https://github.com/netj/vim-ko)"
+	@echo "사용법:"
+	@echo "  make usage"
 	@echo "  make help"
-	@echo "  make doc"
-	@echo "  make doc-help"
-	@echo "  make doc-install"
-	@echo "  make doc-translate D=usr_01"
+	@echo "  make translate D=usr_01"
+	@echo "  make zip"
+	@echo "  make install"
+	@echo
 	@echo "  make tutor"
 	@echo "  make po"
 	@echo "  make menu"
 	@echo "  make man"
 
 
-# 설명서
-DOC=vim-$(VERSION)-doc-ko-$(REVISION).tar.bz2
-DOCS=$(TXTS) $(TAG)
-TXTS=doc/*.kox README-ko
-TAG=doc/tags-ko
+## 설명서
+PACKAGE:=vim-$(VERSION)-doc-ko-$(REVISION).zip
+TXTS:=doc/*.kox README-ko
+TAGS:=doc/tags-ko
 
 # 설명서 묶음
-doc: $(DOC)
-$(DOC): $(shell find $(DOCS) 2>/dev/null)
-	tar cvjf $@ $(DOCS)
-$(TAG): $(TXTS)
-	vim +"helptags doc" +"qa!"
-
-# 번역에 앞서 읽어볼 도움말
-doc-help:
-	vim +"help help-translated" +"only" +"norm zt"
+$(PACKAGE): $(TXTS) $(TAGS)
+	zip -r $@ $^
 
 # 번역중인 설명서 설치
-doc-install: $(TAG)
-	[ -e "$$HOME/.vim/doc" ] || ln -sfn "$$PWD/doc" "$$HOME/.vim/doc"
+zip: $(PACKAGE)
+install: $(PACKAGE)
+	mkdir -p ~/.vim/
+	unzip -o $< doc/* -d ~/.vim/
+
+$(TAGS): $(TXTS)
+	vim +"helptags doc" +"qa!"
+
+# 섦명서 번역에 앞서 읽어볼 도움말
+help:
+	vim +"help help-translated" +"only" +"norm zt"
 
 # 설명서 번역
 #  (D=usr_01와 같이 설명서 지정) 
-doc-translate: doc/$(D).kox $(VIMCOPY)/runtime/doc/$(D).txt
-	@vim +1 $< \
+translate: doc/$(D).kox $(VIMCOPY)/runtime/doc/$(D).txt
+	@vim -N +1 $< \
 	    +"set fenc=utf-8 | set fencs=ucs-bom,utf-8,korea" \
 	    +"set noet | set listchars=tab:>.,eol:$$ | set list" \
 	    +"new +1 $(VIMCOPY)/runtime/doc/$(D).txt" \
@@ -59,8 +61,6 @@ doc-translate: doc/$(D).kox $(VIMCOPY)/runtime/doc/$(D).txt
 	    +"vnew MEMO | set noscrollbind | norm Hw" \
 	    +"vertical resize 80" \
 
-define run-vim
-endef
 # 설명서 번역 준비
 doc/%.kox: $(VIMCOPY)/runtime/doc/%.txt
 	@\
@@ -70,7 +70,8 @@ doc/%.kox: $(VIMCOPY)/runtime/doc/%.txt
 	cp $< $@; \
 	runvim() { \
 	    f=$$1; shift; \
-	    vim +1 $$f \
+	    vim -N +1 $$f \
+	        +'set noet' \
 	        +'norm no:spl doc/usr_toc.koxgg/pW"zy$$cD"zp0"yy$$uc' \
 	        +'norm no0f|lv;hyW@y0"ty$$uc' \
 	        +'norm no/"npV:s/"npa/"mp0"ry$$uc' \
@@ -78,13 +79,13 @@ doc/%.kox: $(VIMCOPY)/runtime/doc/%.txt
 	        +'wq'; \
 	}; \
 	runvim $@ \
-	    +'norm ggnoFor Vim version 7.0.0"ny$$uoVim version 7.0 대상.0"my$$uc@r@t@r@t' \
+	    +'norm ggnoFor Vim version $(VERSION).0"ny$$uoVim version $(VERSION) 대상.0"my$$uc@r@t@r@t' \
 	    +'norm ggnoLast change:0"ny$$uo새로고침:0"my$$uc@r@t@r@t' \
 	    +'norm ggno^Copyright: see |manual-copyright|0"ny$$uo저작권: |manual-copyright| 참고0"my$$uc@r' \
 	; \
 	runvim $@ \
 	    +'norm ggnoVIM USER MANUAL - by Bram Moolenaar0"ny$$uoVIM 사용설명서 - Bram Moolenaar 저0"my$$uc@r:center' \
-	    +'norm yyp0vf-r WC     '"$(AUTHOR)"' 역' \
+	    +'norm yyp:set etV:retab!0vf-r WC     '"$(AUTHOR)"' 역:set noetV:retab!' \
 	    +'norm gglvf*hy``@y:center' \
 	; \
 	runvim $@ \
@@ -96,28 +97,30 @@ doc/%.kox: $(VIMCOPY)/runtime/doc/%.txt
 	fi
 
 # Vim 소스코드 가져오기
-$(VIMCOPY) $(VIMCOPY)/%:
-	svn co $(VIMREPO) $(VIMCOPY)
+$(VIMCOPY):
+	hg clone $(VIMREPO) $(VIMCOPY)
+$(VIMCOPY)/%: $(VIMCOPY)
 
-# 길잡이
+
+## 길잡이
 tutor: $(VIMCOPY)
 	cd $(VIMCOPY)/runtime/tutor && vim tutor.ko.utf-8
-$(VIMCOPY)/runtime/tutor/tutor.ko.euc: \
-    $(VIMCOPY)/runtime/tutor/tutor.ko.utf-8
+$(VIMCOPY)/runtime/tutor/tutor.ko.euc: $(VIMCOPY)/runtime/tutor/tutor.ko.utf-8
 	vim $< +"wq! ++enc=euc-kr $@"
 
-# 프로그램 메시지
+## 프로그램 메시지
 po: $(VIMCOPY)
-	cd $(VIMCOPY)/src/po && vim ko.po
+	cd $(VIMCOPY)/src/po && vim ko.UTF-8.po
 
-# GUI 메뉴
+## GUI 메뉴
 menu: $(VIMCOPY)
 	cd $(VIMCOPY)/runtime/lang && vim menu_ko_kr.utf-8.vim
 $(VIMCOPY)/runtime/lang/menu_ko_kr.euckr.vim: \
     $(VIMCOPY)/runtime/lang/menu_ko_kr.utf-8.vim
 	vim $< +"wq! ++enc=euc-kr $@"
 
-# 매뉴얼 페이지
+## 매뉴얼 페이지
 man: $(VIMCOPY)
+	cd $(VIMCOPY)/runtime/doc && for m in *.1; do case $$m in *-*) continue ;; esac; k=$${m%.1}-ko.UTF-8.1; [ -e $$k ] || cp -a $$m $$k; done
 	cd $(VIMCOPY)/runtime/doc && vim *-ko*.1
 

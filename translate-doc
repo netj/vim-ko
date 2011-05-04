@@ -1,7 +1,0 @@
-#!/bin/sh
-# Vim translation helper
-# Author: Jaeho Shin <netj@sparcs.org>
-# Created: 2007-04-17
-
-cd "`dirname "$0"`"
-make doc-translate D=$1

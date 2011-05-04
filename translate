@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Vim 한글 번역 도우미
+# Usage:
+#  ./translate usr_02
+#  ./translate doc/usr_02.kox
+#
+# Author: Jaeho Shin <netj@sparcs.org>
+# Created: 2007-04-17
+set -eu
+
+[ $# -eq 1 ] || { sed -n '2,/^#$/ s/^# //p' <"$0"; exit 1; }
+D=$1
+
+case $D in
+    doc/*.??x)
+        D=${D#doc/}
+        D=${D%.??x}
+        ;;
+esac
+
+cd "`dirname "$0"`"
+make translate D=$D
