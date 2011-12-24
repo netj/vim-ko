@@ -10,7 +10,7 @@ REVISION:=$(shell git rev-parse HEAD | cut -b1-6)
 VIMREPO:=https://vim.googlecode.com/hg/
 VIMCOPY:=vim
 
-.PHONY: usage help translate zip install  tutor po menu man
+.PHONY: usage help translate html zip install  tutor po menu man
 
 usage:
 	@echo "vim-ko $(VERSION)-$(REVISION) (https://github.com/netj/vim-ko)"
@@ -18,6 +18,7 @@ usage:
 	@echo "  make usage"
 	@echo "  make help"
 	@echo "  make translate D=usr_01"
+	@echo "  make html"
 	@echo "  make zip"
 	@echo "  make install"
 	@echo
@@ -29,12 +30,21 @@ usage:
 
 ## 설명서
 PACKAGE:=vim-$(VERSION)-doc-ko-$(REVISION).zip
-TXTS:=doc/*.kox README-ko
+TXTS:=doc/*.kox
 TAGS:=doc/tags-ko
+SUPPLEMENTS:=README-ko
 
 # 설명서 묶음
-$(PACKAGE): $(TXTS) $(TAGS)
+$(PACKAGE): $(TAGS) $(TXTS) $(SUPPLEMENTS)
 	zip -r $@ $^
+
+# 웹용 온라인 HTML 설명서
+html: $(TAGS) $(TXTS)
+	mkdir -p html
+	ln -sfn ../doc html/
+	cd html && ../vim2html.pl $(TAGS) $(TXTS)
+	rm -f html/doc
+
 
 # 번역중인 설명서 설치
 zip: $(PACKAGE)
