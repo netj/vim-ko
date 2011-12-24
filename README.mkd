@@ -11,12 +11,9 @@ Vim 한글화 일러두기
 시작하기
 --------
 
- 1. [GitHub에 있는 vim-ko 저장소][github vim-ko]를 fork한 후 내려받습니다.
+ 1. [GitHub에 있는 vim-ko 저장소][github vim-ko]를 내려받습니다.
 
-        git clone https://github.com/netj/vim-ko.git
-
- 저장소 주소에서 netj 대신 자신의 아이디를 사용하시면 되며, 그냥 구경부터
- 하시려면 fork하지 않고 받으셔도 됩니다.
+        git clone https://github.com/vim-ko/vim-ko.git
 
  2. `make` 명령을 실행해 봅니다.
 
@@ -86,7 +83,7 @@ Vim 소스트리 내에 있는 번역 대상들을 다루기 위한 Make 규칙�
  3. [GitHub의 저장소][github vim-ko]를 써서 작업내용을
     교환하는 용도로 씁니다.
 
-[github vim-ko]: https://github.com/netj/vim-ko
+[github vim-ko]: https://github.com/vim-ko/vim-ko
 
 ### 초벌 번역
 

@@ -10,15 +10,16 @@ REVISION:=$(shell git rev-parse HEAD | cut -b1-6)
 VIMREPO:=https://vim.googlecode.com/hg/
 VIMCOPY:=vim
 
-.PHONY: usage help translate html zip install  tutor po menu man
+.PHONY: usage help translate html zip install publish  tutor po menu man
 
 usage:
-	@echo "vim-ko $(VERSION)-$(REVISION) (https://github.com/netj/vim-ko)"
+	@echo "vim-ko $(VERSION)-$(REVISION) (https://github.com/vim-ko/vim-ko)"
 	@echo "사용법:"
 	@echo "  make usage"
 	@echo "  make help"
 	@echo "  make translate D=usr_01"
 	@echo "  make html"
+	@echo "  make publish"
 	@echo "  make zip"
 	@echo "  make install"
 	@echo
@@ -44,6 +45,15 @@ html: $(TAGS) $(TXTS)
 	ln -sfn ../doc html/
 	cd html && ../vim2html.pl $(TAGS) $(TXTS)
 	rm -f html/doc
+
+# vim-ko.github.com에 게시하기
+vim-ko.github.com:
+	[ -d $@ ] || git clone --recursive git@github.com:vim-ko/$@.git $@
+publish: vim-ko.github.com html
+	rm -rf $</doc/*
+	mkdir -p $</doc
+	cp -a html/* $</doc/
+	cd $< && git add doc && git add -u doc && git commit && git push
 
 
 # 번역중인 설명서 설치
